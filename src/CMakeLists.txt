@@ -91,7 +91,6 @@ elseif(UNIX)
 endif()
 
 add_library(yage SHARED ${LIB_SOURCE_FILES})
-add_library(yage_main STATIC static.cc)
 
 # Add GTK dependency
 # CMake x GTK from https://gist.github.com/fracek/3323924
