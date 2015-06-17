@@ -70,7 +70,7 @@ void test_run(TestIter test_iter) {
                   static_cast<double>(clock() - start_time) / CLOCKS_PER_SEC);
 }
 
-extern "C" int yage_main() {
+extern "C" int yage_main(int argc, char **argv) {
   test_init();
 
   if (yage::argc == 1) {
@@ -99,6 +99,11 @@ extern "C" int yage_main() {
   return -2;
 }
 
+extern "C" int yage_lib_init(int argc, char **argv, int (*yage_main)(int, char**));
+
+int main(int argc, char **argv) {
+    return yage_lib_init(argc, argv, yage_main);
+}
 /*
  * To add tests to framework:
  *

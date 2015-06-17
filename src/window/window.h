@@ -105,7 +105,7 @@ public:
    * @return Returns the value which the function new_main returns.
    * @attention DO NOT call it manually.
    */
-  static int init(int (*new_main)());
+  static int init(int (*new_main)(int, char**));
 
   /**
    * @brief Gets a message from pool.

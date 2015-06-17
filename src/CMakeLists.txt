@@ -90,7 +90,8 @@ elseif(UNIX)
     ADD_DEFINITIONS(${GSTREAMER_CFLAGS_OTHER})
 endif()
 
-add_library(yage STATIC ${LIB_SOURCE_FILES})
+add_library(yage SHARED ${LIB_SOURCE_FILES})
+add_library(yage_main STATIC static.cc)
 
 # Add GTK dependency
 # CMake x GTK from https://gist.github.com/fracek/3323924
@@ -147,15 +148,15 @@ target_link_libraries(yagetest yage)
 
 # Audio libraries
 if (APPLE)
-    target_link_libraries(yagetest ${FOUNDATION_LIBRARY} ${AVFOUNDATION_LIBRARY} ${COREMEDIA_LIBRARY})
+    target_link_libraries(yage ${FOUNDATION_LIBRARY} ${AVFOUNDATION_LIBRARY} ${COREMEDIA_LIBRARY})
 elseif(UNIX)
-    target_link_libraries(yagetest ${GSTREAMER_LIBRARIES})
+    target_link_libraries(yage ${GSTREAMER_LIBRARIES})
 endif()
 
 # GTK libraries
 if (MSVC) # library required by MSVC is pretty different than others
-    target_link_libraries(yagetest "atk-1.0.lib" "cairo.lib" "fontconfig.lib" "gailutil.lib" "gdk-win32-3.0.lib" "gdk_pixbuf-2.0.lib" "gio-2.0.lib" "glib-2.0.lib" "gmodule-2.0.lib" "gobject-2.0.lib" "gthread-2.0.lib" "gtk-win32-3.0.lib" "pango-1.0.lib" "pangocairo-1.0.lib" "pangoft2-1.0.lib" "pangowin32-1.0.lib")
+    target_link_libraries(yage "atk-1.0.lib" "cairo.lib" "fontconfig.lib" "gailutil.lib" "gdk-win32-3.0.lib" "gdk_pixbuf-2.0.lib" "gio-2.0.lib" "glib-2.0.lib" "gmodule-2.0.lib" "gobject-2.0.lib" "gthread-2.0.lib" "gtk-win32-3.0.lib" "pango-1.0.lib" "pangocairo-1.0.lib" "pangoft2-1.0.lib" "pangowin32-1.0.lib")
 else()
-    target_link_libraries(yagetest ${GTK3_LIBRARIES})
+    target_link_libraries(yage ${GTK3_LIBRARIES})
 endif()
 

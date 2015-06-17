@@ -19,7 +19,14 @@
 /* main function redirect
  * DO NOT INCLUDE THIS HEADER TO WRITE PROGRAM THAT DO NOT LINK TO YAGE
  */
-#define main(...) yage_main(int argc, char *argv[])
+#define main(...) \
+  _yage_dummy_func() {}\
+  int yage_main(int argc, char *argv[]); \
+  extern "C" int yage_lib_init(int argc, char **argv, int (*yage_main)(int, char**)); \
+  int main(int argc, char *argv[]) { \
+    return yage_lib_init(argc, argv, yage_main); \
+  } \
+  int yage_main(int argc, char *argv[])
 
 #ifdef __cplusplus
 extern "C" {

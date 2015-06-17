@@ -28,7 +28,7 @@ gpointer user_thread(gpointer *param) {
 
 bool Window::quit_all_windows_destroyed = true;
 
-int Window::init(int (*new_main)()) {
+int Window::init(int (*new_main)(int, char**)) {
   msg_queue_ = g_async_queue_new();
   gtk_init(nullptr, nullptr);
 

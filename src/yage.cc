@@ -8,7 +8,7 @@ char **argv;
 
 }  // namespace yage
 
-int main(int argc, char **argv)
+extern "C" int yage_lib_init(int argc, char **argv, int (*yage_main)(int, char**))
 {
   yage::argc = argc;
   yage::argv = argv;

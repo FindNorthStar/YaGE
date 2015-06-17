@@ -11,7 +11,7 @@ void test_draw_shape(void)
   int width,height;
   w.set_size(-1,-1);
   w.get_size(width,height);
-  g_print("window_width=%d,window_height=%d\n",width,height);
+  printf("window_width=%d,window_height=%d\n",width,height);
   w.set_resizable(true);
   Canvas canvas(640,480);
   std::string pic_name = "";
